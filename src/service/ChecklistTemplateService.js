@@ -24,7 +24,7 @@ let getChecklistTemplateById = (checklistTemplateId) => {
             if (checklistTemplate) {
                 resolve(checklistTemplate);
             } else {
-                resolve({});
+                resolve([]);
             }
         } catch (e) {
             reject(e);
@@ -54,8 +54,8 @@ let updateChecklistTemplate = (data) => {
             let checklistTemplate = await db.ChecklistTemplate.findOne({
                 where: {id: data.id}
             });
-            checklistTemplate.content = data.content;
-            checklistTemplate.result = data.result;
+            checklistTemplate.fileName = data.fileName;
+            checklistTemplate.data = data.data;
             checklistTemplate.updateAt = new Date()
             await checklistTemplate.save();
             resolve();

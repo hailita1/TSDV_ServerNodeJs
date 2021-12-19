@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
     };
     Checklist.init({
         content: DataTypes.STRING,
-        result: DataTypes.STRING
+        result: DataTypes.STRING,
+        createBy: DataTypes.STRING
     }, {
         sequelize,
         modelName: 'Checklist',

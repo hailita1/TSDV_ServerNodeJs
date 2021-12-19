@@ -15,7 +15,7 @@ let initWebRoutes = (app) => {
     router.get('/api/checklistTemplate', checklistTemplateController.getAllChecklistTemplate)
     router.get('/api/checklistTemplate/:id', checklistTemplateController.getChecklistTemplateById)
     router.post('/api/checklistTemplate', checklistTemplateController.createChecklistTemplate)
-    router.put('/api/checklistTemplate', checklistTemplateController.createChecklistTemplate)
+    router.put('/api/checklistTemplate', checklistTemplateController.updateChecklistTemplate)
     router.delete('/api/checklistTemplate/:id', checklistTemplateController.deleteChecklistTemplate)
     return app.use("/", router);
 }

@@ -23,7 +23,7 @@ let getChecklistById = (checklistId) => {
             if (checklist) {
                 resolve(checklist);
             } else {
-                resolve({});
+                resolve([]);
             }
         } catch (e) {
             reject(e);
@@ -34,13 +34,15 @@ let getChecklistById = (checklistId) => {
 let createChecklist = async (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            await db.Checklist.create({
-                content: data.content,
-                result: data.result,
-                createAt: new Date(),
-                createBy: data.author,
-                updateAt: null
-            })
+            for (let i = 0; i < data.length; i++) {
+                await db.Checklist.create({
+                    content: data[i].content,
+                    result: data[i].result,
+                    createAt: new Date(),
+                    createBy: data[i].author,
+                    updateAt: null
+                })
+            }
             resolve();
         } catch (e) {
             reject(e);
