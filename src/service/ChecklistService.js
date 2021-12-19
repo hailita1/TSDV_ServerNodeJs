@@ -6,6 +6,7 @@ let getAllChecklist = () => {
             let checklists = await db.Checklist.findAll({
                 raw: true
             })
+            console.log(checklists);
             resolve(checklists);
         } catch (e) {
             reject(e);

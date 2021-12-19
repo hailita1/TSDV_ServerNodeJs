@@ -22,18 +22,26 @@ let getChecklistTemplateById = async (req, res) => {
 let createChecklistTemplate = async (req, res) => {
     try {
         await checklistTemplateService.createChecklistTemplate(req.body);
-        return res.send('Successfully')
+        return res.status(200).json({
+            message: ' Successfully'
+        })
     } catch (e) {
-        return res.send(e);
+        return res.status(500).json({
+            message: e
+        });
     }
 }
 
 let updateChecklistTemplate = async (req, res) => {
     try {
         await checklistTemplateService.updateChecklistTemplate(req.body);
-        return res.send('Successfully')
+        return res.status(200).json({
+            message: ' Successfully'
+        })
     } catch (e) {
-        return res.send(e);
+        return res.status(500).json({
+            message: e
+        });
     }
 }
 
@@ -41,9 +49,13 @@ let deleteChecklistTemplate = async (req, res) => {
     try {
         let checklistId = req.param("id");
         await checklistTemplateService.deleteChecklistTemplate(checklistId);
-        return res.send('Successfully')
+        return res.status(200).json({
+            message: ' Successfully'
+        })
     } catch (e) {
-        return res.send(e);
+        return res.status(500).json({
+            message: e
+        });
     }
 }
 
