@@ -1,6 +1,7 @@
 import express from "express";
 import checklistController from "../controller/ChecklistController"
 import checklistTemplateController from "../controller/ChecklistTemplateController"
+import resultController from "../controller/ResultController"
 
 let router = express.Router();
 
@@ -17,6 +18,8 @@ let initWebRoutes = (app) => {
     router.post('/api/checklistTemplate', checklistTemplateController.createChecklistTemplate)
     router.put('/api/checklistTemplate', checklistTemplateController.updateChecklistTemplate)
     router.delete('/api/checklistTemplate/:id', checklistTemplateController.deleteChecklistTemplate)
+
+    router.get('/api/result', resultController.getAllResult)
     return app.use("/", router);
 }
 

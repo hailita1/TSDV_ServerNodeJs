@@ -12,7 +12,7 @@ module.exports = {
                 type: Sequelize.STRING
             },
             result: {
-                type: Sequelize.STRING
+                type: Sequelize.INTEGER
             },
             createBy: {
                 type: Sequelize.STRING

@@ -6,7 +6,14 @@ let getAllChecklist = () => {
             let checklists = await db.Checklist.findAll({
                 raw: true
             })
-            console.log(checklists);
+            let resultList = await db.Result.findAll({
+                raw: true
+            })
+            if (checklists) {
+                for (let i = 0; i < checklists.length; i++) {
+                    checklists[i].results = resultList;
+                }
+            }
             resolve(checklists);
         } catch (e) {
             reject(e);
@@ -54,13 +61,15 @@ let createChecklist = async (data) => {
 let updateChecklist = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let checklist = await db.Checklist.findOne({
-                where: {id: data.id}
-            });
-            checklist.content = data.content;
-            checklist.result = data.result;
-            checklist.updateAt = new Date()
-            await checklist.save();
+            for (let i = 0; i < data.length; i++) {
+                let checklist = await db.Checklist.findOne({
+                    where: {id: data[i].id}
+                });
+                checklist.content = data[i].content;
+                checklist.result = data[i].result;
+                checklist.updateAt = new Date()
+                await checklist.save();
+            }
             resolve();
         } catch (e) {
             reject(e);
